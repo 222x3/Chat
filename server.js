@@ -22,6 +22,13 @@ app.get("/homejs",function(req,res){
   res.sendFile(path.resolve(__dirname+"/public/js","home.js"))
 })
 
+app.post("/sendChat",function(req,res){
+  console.log("Request for /sendChat")
+  console.log(" name:"+req.body.name)
+  console.log(" msg:"+req.body.msg)
+  res.json("Called sendChat successfully.")
+})
+
 app.get("/bootcss",function(req,res){
   console.log("Request for /bootcss")
   res.sendFile(path.resolve(__dirname+"/public/css","bootstrap.css"))
