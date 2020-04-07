@@ -1,3 +1,7 @@
-$(document).ready(){
-  console.log("In home.js")
-}
+$(document).ready(function(){
+  console.log("home.js loaded")
+
+  $("#sendChat").click(function(){
+    console.log("button clicked")
+  });
+})
