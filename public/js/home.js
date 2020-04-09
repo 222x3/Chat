@@ -11,7 +11,8 @@ function sendChat(){
   return false;
 }
 function sendChatSuccess(data){
-  console.log(data);
+  $("#chatPos").append("<p>"+data.name+": " + data.msg + "</p>")
+  $("#yourMessage").val("");
 }
 $(document).ready(function(){
   console.log("home.js loaded")

@@ -3,6 +3,7 @@ var bodyParser = require('body-parser')
 var path = require("path");
 var app = express();
 var port = 3000;
+var logs;
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,7 +27,9 @@ app.post("/sendChat",function(req,res){
   console.log("Request for /sendChat")
   console.log(" name:"+req.body.name)
   console.log(" msg:"+req.body.msg)
-  res.json("Called sendChat successfully.")
+  logs.msgs[logs.index] = req.body.msg;
+  logs.ppl[logs.index] = req.body.name;
+  res.json({name:req.body.name,msg:req.body.msg})
 })
 
 app.get("/bootcss",function(req,res){
@@ -34,7 +37,14 @@ app.get("/bootcss",function(req,res){
   res.sendFile(path.resolve(__dirname+"/public/css","bootstrap.css"))
 })
 
+app.get("/chatHistory",function(req,res){
+  console.log("Request for /chatHistory")
+  res.json({})
+})
+
 
 app.listen(port,function() {
 	console.log("server.js started on port:"+port);
+  logs.totalMsg=0;
+  logs.index=0;
 });
